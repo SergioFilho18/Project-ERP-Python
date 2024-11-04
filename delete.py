@@ -13,7 +13,10 @@ mycursor = mydb.cursor()
 ### DELETE TABELA ###
 print('DELETE CLIENTE')
 
-where = "WHERE IDCliente = '2'"
+coluna = 'Cidade'
+valor = 'Votuporanga'
+
+where = f"WHERE {coluna} = '{valor}'"
 sql = f'DELETE FROM Cliente {where}'
 
 mycursor.execute(sql)
@@ -21,7 +24,7 @@ mycursor.execute(sql)
 mydb.commit()
 
 if(mycursor.rowcount != 0):
-    print(mycursor.rowcount, 'record(s) deleted')
+    print(mycursor.rowcount, 'foram deletadas')
 
 else:
     print('Dado inexistente ou já deletado')
