@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>643</width>
+    <height>312</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="imgBackground">
+    <property name="geometry">
+     <rect>
+      <x>-250</x>
+      <y>70</y>
+      <width>1131</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/logo_empresa/icons/icon_erp.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_cliente">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icon_cliente/icons/cliente.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_fornecedor">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icon_fornecedor/icons/fornecedor.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_produtos">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icon_produtos/icons/produtos.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_vendas">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image:url(:/icon_venda/icons/venda.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_pagar">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image:url(:/icon_pagar/icons/contasPagar.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_receber">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icon_receber/icons/receber.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_caixa">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icon_caixa/icons/caixa.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_sair">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icon_sair/icons/sair.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>643</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuCadastros">
+    <property name="title">
+     <string>Cadastros</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionCliente"/>
+    <addaction name="actionFornecedor"/>
+    <addaction name="actionUsuarios"/>
+   </widget>
+   <widget class="QMenu" name="menuOperacoes">
+    <property name="title">
+     <string>Operacoes</string>
+    </property>
+    <widget class="QMenu" name="menuSa_da_de_Produtos">
+     <property name="title">
+      <string>Saída de Produtos</string>
+     </property>
+     <addaction name="actionVenda"/>
+     <addaction name="actionConsumo"/>
+    </widget>
+    <widget class="QMenu" name="menuEstoque">
+     <property name="title">
+      <string>Estoque</string>
+     </property>
+     <addaction name="actionSaldo"/>
+    </widget>
+    <widget class="QMenu" name="menuCompras">
+     <property name="title">
+      <string>Compras</string>
+     </property>
+     <addaction name="actionCompras_2"/>
+     <addaction name="actionPedido"/>
+     <addaction name="actionCancelar"/>
+    </widget>
+    <addaction name="menuSa_da_de_Produtos"/>
+    <addaction name="menuEstoque"/>
+    <addaction name="menuCompras"/>
+   </widget>
+   <widget class="QMenu" name="menuFinanceiro">
+    <property name="title">
+     <string>Financeiro</string>
+    </property>
+    <addaction name="actionCaixa"/>
+    <addaction name="actionContas_Bancos"/>
+    <addaction name="actionContas_p_pagar"/>
+    <addaction name="actionContas_pagas"/>
+    <addaction name="actionContas_p_receber"/>
+    <addaction name="actionContas_recebidas"/>
+   </widget>
+   <widget class="QMenu" name="menuConsultas">
+    <property name="title">
+     <string>Consultas</string>
+    </property>
+    <widget class="QMenu" name="menuVendas">
+     <property name="title">
+      <string>Vendas</string>
+     </property>
+     <addaction name="actionGeral"/>
+     <addaction name="actionResumo"/>
+    </widget>
+    <widget class="QMenu" name="menuConsumos">
+     <property name="title">
+      <string>Consumos</string>
+     </property>
+     <addaction name="actionGeral_2"/>
+     <addaction name="actionResumo_2"/>
+    </widget>
+    <addaction name="menuVendas"/>
+    <addaction name="menuConsumos"/>
+   </widget>
+   <addaction name="menuCadastros"/>
+   <addaction name="menuOperacoes"/>
+   <addaction name="menuFinanceiro"/>
+   <addaction name="menuConsultas"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCliente">
+   <property name="text">
+    <string>Cliente</string>
+   </property>
+  </action>
+  <action name="actionFornecedor">
+   <property name="text">
+    <string>Fornecedor</string>
+   </property>
+  </action>
+  <action name="actionUsuarios">
+   <property name="text">
+    <string>Usuarios</string>
+   </property>
+  </action>
+  <action name="actionVenda">
+   <property name="text">
+    <string>Venda</string>
+   </property>
+  </action>
+  <action name="actionConsumo">
+   <property name="text">
+    <string>Consumo</string>
+   </property>
+  </action>
+  <action name="actionSaldo">
+   <property name="text">
+    <string>Saldo</string>
+   </property>
+  </action>
+  <action name="actionCompras_2">
+   <property name="text">
+    <string>Comprar</string>
+   </property>
+  </action>
+  <action name="actionPedido">
+   <property name="text">
+    <string>Pedido</string>
+   </property>
+  </action>
+  <action name="actionCancelar">
+   <property name="text">
+    <string>Cancelar</string>
+   </property>
+  </action>
+  <action name="actionCaixa">
+   <property name="text">
+    <string>Caixa</string>
+   </property>
+  </action>
+  <action name="actionContas_Bancos">
+   <property name="text">
+    <string>Contas Bancos</string>
+   </property>
+  </action>
+  <action name="actionContas_p_pagar">
+   <property name="text">
+    <string>Contas p/ pagar</string>
+   </property>
+  </action>
+  <action name="actionContas_pagas">
+   <property name="text">
+    <string>Contas pagas</string>
+   </property>
+  </action>
+  <action name="actionContas_p_receber">
+   <property name="text">
+    <string>Contas p/ receber</string>
+   </property>
+  </action>
+  <action name="actionContas_recebidas">
+   <property name="text">
+    <string>Contas recebidas</string>
+   </property>
+  </action>
+  <action name="actionGeral">
+   <property name="text">
+    <string>Geral</string>
+   </property>
+  </action>
+  <action name="actionResumo">
+   <property name="text">
+    <string>Resumo</string>
+   </property>
+  </action>
+  <action name="actionGeral_2">
+   <property name="text">
+    <string>Geral</string>
+   </property>
+  </action>
+  <action name="actionResumo_2">
+   <property name="text">
+    <string>Resumo</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/logo_empresa.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_sair.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_caixa.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_receber.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_pagar.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_vendas.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_produtos.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_fornecedor.qrc"/>
+  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_cliente.qrc"/>
+ </resources>
+ <connections/>
+</ui>
