@@ -149,6 +149,24 @@
      <height>391</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>771</width>
+     <height>391</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>771</width>
+     <height>391</height>
+    </size>
+   </property>
+   <property name="tabKeyNavigation">
+    <bool>true</bool>
+   </property>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
    <column>
     <property name="text">
      <string>ID</string>
@@ -205,13 +223,13 @@
   <zorder>BT_add</zorder>
  </widget>
  <resources>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_add.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_filtro.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_pesquisar.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_retornar.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_excluir.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_consultar.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_alterar.qrc"/>
+  <include location="icon_add.qrc"/>
+  <include location="icon_filtro.qrc"/>
+  <include location="icon_pesquisar.qrc"/>
+  <include location="icon_retornar.qrc"/>
+  <include location="icon_excluir.qrc"/>
+  <include location="icon_consultar.qrc"/>
+  <include location="icon_alterar.qrc"/>
  </resources>
  <connections/>
 </ui>

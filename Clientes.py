@@ -9,55 +9,79 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QFileDialog, QTableWidget, QTableWidgetItem
+
+### LIBS DIVERSAS ###
+
+
+import pyodbc
+import mysql.connector
+import pandas as pd
+
+            
 
 
 class Ui_formCliente(object):
+    
+    
     def setupUi(self, formCliente):
         formCliente.setObjectName("formCliente")
         formCliente.setWindowModality(QtCore.Qt.NonModal)
         formCliente.resize(791, 528)
         formCliente.setMinimumSize(QtCore.QSize(791, 528))
         formCliente.setMaximumSize(QtCore.QSize(791, 528))
+        
+        # Configuração dos botões
         self.BT_add = QtWidgets.QPushButton(formCliente)
         self.BT_add.setGeometry(QtCore.QRect(0, 0, 81, 71))
         self.BT_add.setStyleSheet("image: url(:/icon_add/icons/adicionar.png)")
         self.BT_add.setText("")
         self.BT_add.setObjectName("BT_add")
+        
         self.BT_alterar = QtWidgets.QPushButton(formCliente)
         self.BT_alterar.setGeometry(QtCore.QRect(80, 0, 81, 71))
         self.BT_alterar.setStyleSheet("image: url(:/icon_alterar/icons/alterar.png)")
         self.BT_alterar.setText("")
         self.BT_alterar.setObjectName("BT_alterar")
+        
         self.BT_consultar = QtWidgets.QPushButton(formCliente)
         self.BT_consultar.setGeometry(QtCore.QRect(160, 0, 81, 71))
         self.BT_consultar.setStyleSheet("image:url(:/icon_consultar/icons/consultar.png)")
         self.BT_consultar.setText("")
         self.BT_consultar.setObjectName("BT_consultar")
+        
         self.BT_excluir = QtWidgets.QPushButton(formCliente)
         self.BT_excluir.setGeometry(QtCore.QRect(240, 0, 81, 71))
         self.BT_excluir.setStyleSheet("image: url(:/icon_excluir/icons/excluir.png)")
         self.BT_excluir.setText("")
         self.BT_excluir.setObjectName("BT_excluir")
+        
         self.BT_retornar = QtWidgets.QPushButton(formCliente)
         self.BT_retornar.setGeometry(QtCore.QRect(710, 0, 81, 71))
         self.BT_retornar.setStyleSheet("image:url(:/icon_retornar/icons/retornar.png)")
         self.BT_retornar.setText("")
         self.BT_retornar.setObjectName("BT_retornar")
+        
         self.BT_procurar = QtWidgets.QPushButton(formCliente)
         self.BT_procurar.setGeometry(QtCore.QRect(504, 100, 131, 21))
         self.BT_procurar.setStyleSheet("image: url(:/icon_pesquisar/icons/pesquisar.png)")
         self.BT_procurar.setText("")
         self.BT_procurar.setObjectName("BT_procurar")
+        
         self.BT_filtrar = QtWidgets.QPushButton(formCliente)
         self.BT_filtrar.setGeometry(QtCore.QRect(640, 100, 131, 21))
         self.BT_filtrar.setStyleSheet("image: url(:/icon_filtro/icons/filtro.png)")
         self.BT_filtrar.setText("")
         self.BT_filtrar.setObjectName("BT_filtrar")
+        
+        # Configuração da tabela
         self.TW_resultado = QtWidgets.QTableWidget(formCliente)
         self.TW_resultado.setGeometry(QtCore.QRect(10, 130, 771, 391))
         self.TW_resultado.setObjectName("TW_resultado")
         self.TW_resultado.setColumnCount(4)
         self.TW_resultado.setRowCount(0)
+        
+        # Configuração dos cabeçalhos das colunas
         item = QtWidgets.QTableWidgetItem()
         self.TW_resultado.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -66,12 +90,27 @@ class Ui_formCliente(object):
         self.TW_resultado.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.TW_resultado.setHorizontalHeaderItem(3, item)
+        
+        # Configuração de largura fixa das colunas
+        largura_total = self.TW_resultado.width() - 20  # Ajuste de largura para evitar o scroll
+        largura_coluna = largura_total // 4  # Divisão igual entre as 4 colunas
+        
+        for col in range(4):
+            self.TW_resultado.setColumnWidth(col, largura_coluna)
+
+        # Desabilita o redimensionamento automático
+        self.TW_resultado.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
+        
+        # Configuração do label e campo de busca
         self.LBL_cliente = QtWidgets.QLabel(formCliente)
         self.LBL_cliente.setGeometry(QtCore.QRect(10, 100, 71, 21))
         self.LBL_cliente.setObjectName("LBL_cliente")
+        
         self.LE_buscarCliente = QtWidgets.QLineEdit(formCliente)
         self.LE_buscarCliente.setGeometry(QtCore.QRect(60, 100, 441, 20))
         self.LE_buscarCliente.setObjectName("LE_buscarCliente")
+        
+        # Ordem de empilhamento dos widgets
         self.BT_alterar.raise_()
         self.BT_consultar.raise_()
         self.BT_excluir.raise_()
@@ -82,9 +121,11 @@ class Ui_formCliente(object):
         self.LBL_cliente.raise_()
         self.LE_buscarCliente.raise_()
         self.BT_add.raise_()
-
+        
+        # Chamada para traduzir e conectar os slots
         self.retranslateUi(formCliente)
         QtCore.QMetaObject.connectSlotsByName(formCliente)
+        self.TW_resultado.verticalHeader().setVisible(False)
 
     def retranslateUi(self, formCliente):
         _translate = QtCore.QCoreApplication.translate
@@ -98,13 +139,84 @@ class Ui_formCliente(object):
         item = self.TW_resultado.horizontalHeaderItem(3)
         item.setText(_translate("formCliente", "Cidade"))
         self.LBL_cliente.setText(_translate("formCliente", " Cliente:"))
-import icon_add_rc
-import icon_alterar_rc
-import icon_consultar_rc
-import icon_excluir_rc
-import icon_filtro_rc
-import icon_pesquisar_rc
-import icon_retornar_rc
+        
+        
+        ### BOTÕES SISTEMA ###
+        self.BT_retornar.clicked.connect(lambda: self.sairTela(formCliente))
+        self.BT_procurar.clicked.connect(self.pesquisarGeral)
+        
+        
+    ### FUNÇÕES SISTEMA ###
+     ## SAIR TELA ##    
+    def sairTela(self, formCliente):
+        formCliente.close()
+    
+    
+    
+    ## Pesquisar tabelaCliente Geral##
+    def pesquisarGeral(self):
+
+        try:
+            # Conexão com o banco de dados SQL Server
+            conn = pyodbc.connect(
+                'DRIVER={SQL Server};SERVER=DESKTOP-O1RQ8B4\\SQLEXPRESS;DATABASE=ERPProject;Trusted_Connection=yes;'
+            )
+            
+            cursor = conn.cursor()
+
+            # Executa a consulta no banco de dados
+            consulta = 'SELECT ID, Nome, Telefone, Cidade FROM Cliente'
+            cursor.execute(consulta)
+            myresult = cursor.fetchall()
+            cursor.close()  # Fecha o cursor após a execução
+            
+            # Limpa os espaços em branco dos resultados
+            myresult = [(str(row[0]).strip(), row[1].strip(), row[2].strip(), row[3].strip()) for row in myresult]
+
+
+            # Criação de um DataFrame com os resultados
+            df = pd.DataFrame(myresult, columns=['ID', 'Nome', 'Telefone', 'Cidade'])
+            self.all_data = df
+            
+            # Configuração da tabela no PyQt
+            numRows = len(self.all_data.index)
+            self.TW_resultado.setColumnCount(len(self.all_data.columns))
+            self.TW_resultado.setRowCount(numRows)
+            self.TW_resultado.setHorizontalHeaderLabels(self.all_data.columns)
+            
+            largura_total = self.TW_resultado.width() - 20  # Subtrai uma pequena margem para evitar scroll indesejado
+            largura_coluna = largura_total // len(self.all_data.columns)
+
+            # Define a largura fixa para cada coluna de forma igual
+            for col in range(len(self.all_data.columns)):
+                self.TW_resultado.setColumnWidth(col, largura_coluna)
+
+            # Desabilita o redimensionamento automático para manter a largura fixa
+            self.TW_resultado.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed) 
+
+            for i in range(numRows):
+                for j in range(len(self.all_data.columns)):
+                    self.TW_resultado.setItem(i, j, QTableWidgetItem(str(self.all_data.iat[i, j])))
+
+            
+
+        except pyodbc.Error as err:
+            print(f"Erro na conexão com o banco de dados: {err}")
+
+        finally:
+            # Certifica-se de fechar a conexão com o banco
+            if conn:
+                conn.close()
+
+
+        ### IMPORT DOS ICONS ###
+import icon_add
+import icon_alterar
+import icon_consultar
+import icon_excluir
+import icon_filtro
+import icon_pesquisar
+import icon_retornar
 
 
 if __name__ == "__main__":

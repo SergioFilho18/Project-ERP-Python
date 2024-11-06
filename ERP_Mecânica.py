@@ -10,6 +10,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+### Import Telas Sistema ###
+
+from Clientes import Ui_formCliente
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -190,15 +194,35 @@ class Ui_MainWindow(object):
         self.actionResumo.setText(_translate("MainWindow", "Resumo"))
         self.actionGeral_2.setText(_translate("MainWindow", "Geral"))
         self.actionResumo_2.setText(_translate("MainWindow", "Resumo"))
-import icon_caixa_rc
-import icon_cliente_rc
-import icon_fornecedor_rc
-import icon_pagar_rc
-import icon_produtos_rc
-import icon_receber_rc
-import icon_sair_rc
-import icon_vendas_rc
-import logo_empresa_rc
+        
+        
+        ### BOTÕES SISTEMA ###
+        self.bt_sair.clicked.connect(self.sairSistema) # Fecha o sistema
+        self.bt_cliente.clicked.connect(self.telaCliente) # Abre tela Cliente
+        self.actionCliente.triggered.connect(self.telaCliente) # Abre tela Cliente
+        
+    ### FUNÇÕES SISTEMA ###
+    ## FECHAR SISTEMA ##
+    def sairSistema(self):
+        sys.exit()
+        
+    ## ABRE TELACLIENTE ##
+    def telaCliente(self):
+        self.formCliente = QtWidgets.QWidget()
+        self.ui = Ui_formCliente()
+        self.ui.setupUi(self.formCliente)
+        self.formCliente.show()
+        
+#### Imagens Sistema ###
+import icon_caixa
+import icon_cliente
+import icon_fornecedor
+import icon_pagar
+import icon_produtos
+import icon_receber
+import icon_sair
+import icon_vendas
+import logo_empresa
 
 
 if __name__ == "__main__":

@@ -23,6 +23,18 @@
       <height>201</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>1131</width>
+      <height>201</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1131</width>
+      <height>201</height>
+     </size>
+    </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/logo_empresa/icons/icon_erp.png)</string>
     </property>
@@ -341,15 +353,15 @@
   </action>
  </widget>
  <resources>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/logo_empresa.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_sair.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_caixa.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_receber.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_pagar.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_vendas.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_produtos.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_fornecedor.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_cliente.qrc"/>
+  <include location="logo_empresa.qrc"/>
+  <include location="icon_sair.qrc"/>
+  <include location="icon_caixa.qrc"/>
+  <include location="icon_receber.qrc"/>
+  <include location="icon_pagar.qrc"/>
+  <include location="icon_vendas.qrc"/>
+  <include location="icon_produtos.qrc"/>
+  <include location="icon_fornecedor.qrc"/>
+  <include location="icon_cliente.qrc"/>
  </resources>
  <connections/>
 </ui>
