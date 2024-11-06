@@ -13,16 +13,26 @@ from PyQt5.QtWidgets import QApplication, QWidget, QFileDialog, QTableWidget, QT
 
 ### LIBS DIVERSAS ###
 
-
 import pyodbc
-import mysql.connector
 import pandas as pd
 
-            
+### IMPORT VARIAVEIS DE CONTROLE ###
+import variaveisControle
 
+### IMPORT FORMS SISTEMA ###
+from dadosCliente import Ui_formDadosCliente
+            
+### Variaveis de conexão com o banco de dados ###
+
+Driver = variaveisControle.Driver
+Server = variaveisControle.Server
+DB = variaveisControle.DB
+Trust = variaveisControle.Trust
 
 class Ui_formCliente(object):
     
+    def __init__(self):
+        self.formDadosCliente = None 
     
     def setupUi(self, formCliente):
         formCliente.setObjectName("formCliente")
@@ -145,6 +155,7 @@ class Ui_formCliente(object):
         self.BT_retornar.clicked.connect(lambda: self.sairTela(formCliente))
         self.BT_procurar.clicked.connect(self.pesquisarGeral)
         self.BT_filtrar.clicked.connect(self.pesquisarFiltrado)
+        self.BT_add.clicked.connect(self.cadastrarCliente)
         
     ### FUNÇÕES SISTEMA ###
      ## SAIR TELA ##    
@@ -159,14 +170,14 @@ class Ui_formCliente(object):
         try:
             # Conexão com o banco de dados SQL Server
             conn = pyodbc.connect(
-                'DRIVER={SQL Server};SERVER=DESKTOP-O1RQ8B4\\SQLEXPRESS;DATABASE=ERPProject;Trusted_Connection=yes;'
+                f'DRIVER={Driver};SERVER={Server};DATABASE={DB};Trusted_Connection={Trust};'
             )
             
             cursor = conn.cursor()
 
             # Executa a consulta no banco de dados
-            consulta = 'SELECT ID, Nome, Telefone, Cidade FROM Cliente'
-            cursor.execute(consulta)
+            querySELECT = 'SELECT ID, Nome, Telefone, Cidade FROM Cliente'
+            cursor.execute(querySELECT)
             myresult = cursor.fetchall()
             cursor.close()  # Fecha o cursor após a execução
             
@@ -214,15 +225,15 @@ class Ui_formCliente(object):
         try:
             # Conexão com o banco de dados SQL Server
             conn = pyodbc.connect(
-                    'DRIVER={SQL Server};SERVER=DESKTOP-O1RQ8B4\\SQLEXPRESS;DATABASE=ERPProject;Trusted_Connection=yes;'
+                    f'DRIVER={Driver};SERVER={Server};DATABASE={DB};Trusted_Connection={Trust};'
             )
             
             cursor = conn.cursor()
 
             # Executa a consulta no banco de dados
-            nomeConsulta = self.LE_buscarCliente.text()
-            consulta = "SELECT ID, Nome, Telefone, Cidade FROM Cliente WHERE Nome LIKE'" + nomeConsulta + "%'"
-            cursor.execute(consulta)
+            nomeSELECT = self.LE_buscarCliente.text()
+            querySELECT = "SELECT ID, Nome, Telefone, Cidade FROM Cliente WHERE Nome LIKE'" + nomeSELECT + "%'"
+            cursor.execute(querySELECT)
             myresult = cursor.fetchall()
             cursor.close()  # Fecha o cursor após a execução
             
@@ -264,6 +275,12 @@ class Ui_formCliente(object):
             if conn:
                 conn.close()
 
+    ## Função Cadastrar Cliente ##
+    def cadastrarCliente(self):
+        self.formDadosCliente = QtWidgets.QWidget()
+        self.ui = Ui_formDadosCliente()
+        self.ui.setupUi(self.formDadosCliente)
+        self.formDadosCliente.show()
     
     
         ### IMPORT DOS ICONS ###
