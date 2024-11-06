@@ -144,7 +144,7 @@ class Ui_formCliente(object):
         ### BOTÕES SISTEMA ###
         self.BT_retornar.clicked.connect(lambda: self.sairTela(formCliente))
         self.BT_procurar.clicked.connect(self.pesquisarGeral)
-        
+        self.BT_filtrar.clicked.connect(self.pesquisarFiltrado)
         
     ### FUNÇÕES SISTEMA ###
      ## SAIR TELA ##    
@@ -209,6 +209,63 @@ class Ui_formCliente(object):
                 conn.close()
 
 
+    ## Pesquisar Cliente Filtrado ##
+    def pesquisarFiltrado(self):
+        try:
+            # Conexão com o banco de dados SQL Server
+            conn = pyodbc.connect(
+                    'DRIVER={SQL Server};SERVER=DESKTOP-O1RQ8B4\\SQLEXPRESS;DATABASE=ERPProject;Trusted_Connection=yes;'
+            )
+            
+            cursor = conn.cursor()
+
+            # Executa a consulta no banco de dados
+            nomeConsulta = self.LE_buscarCliente.text()
+            consulta = "SELECT ID, Nome, Telefone, Cidade FROM Cliente WHERE Nome LIKE'" + nomeConsulta + "%'"
+            cursor.execute(consulta)
+            myresult = cursor.fetchall()
+            cursor.close()  # Fecha o cursor após a execução
+            
+            # Limpa os espaços em branco dos resultados
+            myresult = [(str(row[0]).strip(), row[1].strip(), row[2].strip(), row[3].strip()) for row in myresult]
+
+
+            # Criação de um DataFrame com os resultados
+            df = pd.DataFrame(myresult, columns=['ID', 'Nome', 'Telefone', 'Cidade'])
+            self.all_data = df
+            
+            # Configuração da tabela no PyQt
+            numRows = len(self.all_data.index)
+            self.TW_resultado.setColumnCount(len(self.all_data.columns))
+            self.TW_resultado.setRowCount(numRows)
+            self.TW_resultado.setHorizontalHeaderLabels(self.all_data.columns)
+            
+            largura_total = self.TW_resultado.width() - 20  # Subtrai uma pequena margem para evitar scroll indesejado
+            largura_coluna = largura_total // len(self.all_data.columns)
+
+            # Define a largura fixa para cada coluna de forma igual
+            for col in range(len(self.all_data.columns)):
+                self.TW_resultado.setColumnWidth(col, largura_coluna)
+
+            # Desabilita o redimensionamento automático para manter a largura fixa
+            self.TW_resultado.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed) 
+
+            for i in range(numRows):
+                for j in range(len(self.all_data.columns)):
+                    self.TW_resultado.setItem(i, j, QTableWidgetItem(str(self.all_data.iat[i, j])))
+
+            
+
+        except pyodbc.Error as err:
+            print(f"Erro na conexão com o banco de dados: {err}")
+
+        finally:
+            # Certifica-se de fechar a conexão com o banco
+            if conn:
+                conn.close()
+
+    
+    
         ### IMPORT DOS ICONS ###
 import icon_add
 import icon_alterar
