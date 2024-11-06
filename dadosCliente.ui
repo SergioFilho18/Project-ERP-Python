@@ -116,8 +116,8 @@
   </widget>
  </widget>
  <resources>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_cancelar.qrc"/>
-  <include location="D:/Programação/Udemy/Python/Project-ERP/icon_cadastrar.qrc"/>
+  <include location="icon_cancelar.qrc"/>
+  <include location="icon_cadastrar.qrc"/>
  </resources>
  <connections/>
 </ui>
